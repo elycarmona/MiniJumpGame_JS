@@ -7,7 +7,7 @@ var config = {
     width: 800,
     height: 600,
     scene: {
-        perload: preload,
+        preload: preload,
         create: create,
         update: update,
     }
