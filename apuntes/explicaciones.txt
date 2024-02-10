@@ -1,0 +1,14 @@
+¿Como hemos calculado el ancho y alto del personaje?
+
+-El ancho del personaje se calcula dividiendo el ancho te la imagen entre 9 que son los diferentes movimientos del personaje. Ancho 288/9 = 32px
+
+-La altura del personaje quedaria en 48px ya que no varía de un de un movimiento a otro.
+
+¿Escala de la prataforma?
+
+- La imagen plataform.png es de 400x32 px, por lo tanto si la escalamos por 2 va a tener 800x64 px. 
+(Esto solo se aplica a la primera plataforma que hace de suelo)
+
+¿Para que es refreshBody()?
+
+Ya que se ha escalado un cuerpo fisico estatico por lo que es necesario avisar al sistema de fisicas sobre los cambios que hemos hecho.
