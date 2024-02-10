@@ -57,34 +57,61 @@ function create() {
         // Animaciones del personaje
         this.anims.create({
                 key: 'left', // Se mueve a la IZQ    // Empezara en el fotograma 0 y acabará en el fotograma 3
-                frame: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
+                frames: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
                 frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
                 repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
         });
 
         this.anims.create({
                 key: 'turn',                    // Cuando el personaje esté quieto
-                frame: [{ key: 'dude', frame: 4}],
+                frames: [{ key: 'dude', frame: 4}],
                 frameRete: 20, // Ejecutando a una velocidad de 20 fotogramas por segundos
         });
 
         this.anims.create({
                 key: 'right', // Se mueve a la DER    // Empezara en el fotograma 5 y acabará en el fotograma 8
-                frame: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
+                frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
                 frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
                 repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
         });
 
         // Gravedad del PJ y Colisiones
-        player.body.setGravityY(300);// Gravedad con la que cae el PJ
+        //player.body.setGravityY(300);// Gravedad con la que cae el PJ
 
         this.physics.add.collider(player, platforms);
         // Monitoriza si hay contacto entre el PJ y alguna plataforma para que de esta manera colisione
         // y no lo traspase
 
+        // CONTROLES DEL PERSONAJE
+        // Esta linea ↓ crea el objeto cursors con 4 propiedades (arriba, abajo, izq y der)
+        cursors = this.input.keyboard.createCursorKeys();
 }
-        // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, saltando...
-        // se actualizará cada segundo para captar todo lo que hace el usuario
+
+        // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, parado o saltando.
+        // se actualizará cada segundo para captar todo lo que hace el usuario    
 function update() {
-    
+        // CONFIGURACIÓN DE CONTROLES
+    // cuando el usuario esté presionando la tecla izq
+    if(cursors.left.isDown){
+        player.setVelocityX(-160); // Se aplica una velocidad horizontal negativa
+        player.anims.play('left', true);
+    }
+
+    // cuando el usuario esté presionando la tecla der
+    else if(cursors.right.isDown){
+        player.setVelocityX(160);
+        player.anims.play('right', true);
+    }
+
+    // Si el jugador no pulsa ninguna tecla mantendrá el pj quieto y no se bugueará.
+    else{
+        player.setVelocityX(0); // Se aplica una velocidad horizontal de 0
+        player.anims.play('turn');
+    }
+
+    // Si pulsamos la tecla arriba el personaje saltará y se verifica que esté tocando el suelo 
+    // para que que no salte tambien estando en el aire
+    if(cursors.up.isDown && player.body.touching.down){
+        player.setVelocityY(-330); // Se aplica una velocidad vertical de -330
+    }
 }
