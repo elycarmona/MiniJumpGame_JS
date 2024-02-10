@@ -127,6 +127,7 @@ function create() {
 // se actualizará cada segundo para captar todo lo que hace el usuario    
 function update() {
 
+        // Esta condiciónes importante ya que hace que el pj se mantega quieto (sin ella se mueve en el sitio)
         if (gameOver) {
                 return
         }
