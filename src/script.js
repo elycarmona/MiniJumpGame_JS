@@ -58,20 +58,20 @@ function create() {
         this.anims.create({
                 key: 'left', // Se mueve a la IZQ    // Empezara en el fotograma 0 y acabará en el fotograma 3
                 frames: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
-                frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
+                frameRate: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
                 repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
         });
 
         this.anims.create({
                 key: 'turn',                    // Cuando el personaje esté quieto
                 frames: [{ key: 'dude', frame: 4}],
-                frameRete: 20, // Ejecutando a una velocidad de 20 fotogramas por segundos
+                frameRate: 20, // Ejecutando a una velocidad de 20 fotogramas por segundos
         });
 
         this.anims.create({
                 key: 'right', // Se mueve a la DER    // Empezara en el fotograma 5 y acabará en el fotograma 8
                 frames: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
-                frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
+                frameRate: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
                 repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
         });
 
