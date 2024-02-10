@@ -74,6 +74,14 @@ function create() {
                 frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
                 repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
         });
+
+        // Gravedad del PJ y Colisiones
+        player.body.setGravityY(300);// Gravedad con la que cae el PJ
+
+        this.physics.add.collider(player, platforms);
+        // Monitoriza si hay contacto entre el PJ y alguna plataforma para que de esta manera colisione
+        // y no lo traspase
+
 }
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, saltando...
         // se actualizará cada segundo para captar todo lo que hace el usuario
