@@ -1,10 +1,6 @@
 // Un juego de Phaser se configura mediante una variable de tipo JSON
 
-        //COMENTAMOS la siguiente linea porque si no, no se visualizan las imagenes (NO LA BORREN)
-//const Phaser = require("phaser");
-        //↑La linea anterior se utiliza para importar el framework de juego Phaser en tu script de JavaScript.
-
-// La variable config es un objeto
+// Config es un objeto
 var config = {
     type: Phaser.AUTO,
     width: 800,
@@ -23,6 +19,11 @@ var config = {
     }
 };
 
+// PUNTUACIÓN
+var score = 0;
+var scoreText; // Objeto que usaremos para la puntuación
+
+        // CONFIGURACIÓN DE MINIJUMPGAME
 var game = new Phaser.Game(config);
 
         // En la Función preload meteremos todo lo que se va a cargar antes de inicializar el juego
@@ -104,6 +105,10 @@ function create() {
 
         // Las estrellas desaparecen tras colisionar con el Personaje
         this.physics.add.overlap(player, stars, collectStar, null, true);
+
+        // OBJETO para la puntuación
+                                // Ubicacion de nuestro texto x px, y px. Texto que se mostrará. Fuente y color del texto
+        scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000'});
 }
 
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, parado o saltando.
@@ -137,5 +142,8 @@ function update() {
 
         // Función que hará que las estrellas desaparezcan cuando el PJ las toque
 function collectStar(player, star){
-        star.disableBody(true, true)
+        star.disableBody(true, true);
+
+        score += 10 // Por cada estrella recogida suma 10 puntos
+        scoreText.setText('Score:' + score);
 }
