@@ -9,6 +9,13 @@ var config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
+    physics: {
+        default: 'arcade',
+        arcade: {
+             gravity: { y: 300},
+             debug: false
+        }
+    },
     scene: {
         preload: preload,
         create: create,
@@ -30,6 +37,15 @@ function preload() {
         // En la Función create añadir los distintos objetos (plataformas, fondo..)
 function create() {
         this.add.image(400, 300, 'sky'); // x px, y px, nombre
+
+                // Plataformas que va a tener ciertas fisicas y serán estaticas.
+        platforms = this.physics.add.staticGroup();
+        
+        platforms.create(400, 568, 'ground').setScale(2);
+
+        platforms.create(600, 400, 'ground');
+        platforms.create(50, 250, 'ground');
+        platforms.create(750, 220, 'ground');
 }
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, saltando...
         // se actualizará cada segundo para captar todo lo que hace el usuario
