@@ -85,6 +85,22 @@ function create() {
         // CONTROLES DEL PERSONAJE
         // Esta linea ↓ crea el objeto cursors con 4 propiedades (arriba, abajo, izq y der)
         cursors = this.input.keyboard.createCursorKeys();
+
+        // AGREGAMOS LAS ESTRELLAS
+        stars = this.physics.add.group({
+                key: 'star',
+                repeat: 11, // Repite la estrella 11 veces
+                setXY: {x: 12, y: 0, stepX: 70 } // X= 12+70= 82 y asi se irá incrementando
+                // ↑ Posición de los 12 elementos
+        })
+
+        stars.children.iterate(function(child){
+                child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+                // Recorre todos los elementos del grupo y le da a cada uno un valor de rebote en Y aleatorio entre 0.4 y 0.8
+        })
+
+        // COLISIÓN DE LAS ESTRELLAS CON LAS PLATAFORMAS
+        this.physics.add.collider(stars, platforms);
 }
 
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, parado o saltando.
