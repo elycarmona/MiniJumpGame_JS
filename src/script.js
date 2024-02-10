@@ -46,6 +46,34 @@ function create() {
         platforms.create(600, 400, 'ground');
         platforms.create(50, 250, 'ground');
         platforms.create(750, 220, 'ground');
+
+        // PERSONAJE
+        player = this.physics.add.sprite(100, 450, 'dude');
+
+        // Con esta linea ↓ haremos que el personaje respete los limites de nuestro juego y no caiga al vacio
+        player.setCollideWorldBounds(true);
+        player.setBounce(0.2); // Hacemos que el personaje rebote un poco al caer
+
+        // Animaciones del personaje
+        this.anims.create({
+                key: 'left', // Se mueve a la IZQ    // Empezara en el fotograma 0 y acabará en el fotograma 3
+                frame: this.anims.generateFrameNumbers('dude', {start: 0, end: 3}),
+                frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
+                repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
+        });
+
+        this.anims.create({
+                key: 'turn',                    // Cuando el personaje esté quieto
+                frame: [{ key: 'dude', frame: 4}],
+                frameRete: 20, // Ejecutando a una velocidad de 20 fotogramas por segundos
+        });
+
+        this.anims.create({
+                key: 'right', // Se mueve a la DER    // Empezara en el fotograma 5 y acabará en el fotograma 8
+                frame: this.anims.generateFrameNumbers('dude', {start: 5, end: 8}),
+                frameRete: 10, // Se va a estar ejecutando a una velocidad de 10 fotogramas por segundos
+                repeat: -1, // Le indicamos que la animacion volverá a empezar cuando termine
+        });
 }
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, saltando...
         // se actualizará cada segundo para captar todo lo que hace el usuario
