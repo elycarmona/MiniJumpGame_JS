@@ -101,6 +101,9 @@ function create() {
 
         // COLISIÓN DE LAS ESTRELLAS CON LAS PLATAFORMAS
         this.physics.add.collider(stars, platforms);
+
+        // Las estrellas desaparecen tras colisionar con el Personaje
+        this.physics.add.overlap(player, stars, collectStar, null, true);
 }
 
         // En la Función update es para ir viendo si el jugador se está moviendo hasta la izq, der, parado o saltando.
@@ -130,4 +133,9 @@ function update() {
     if(cursors.up.isDown && player.body.touching.down){
         player.setVelocityY(-330); // Se aplica una velocidad vertical de -330
     }
+}
+
+        // Función que hará que las estrellas desaparezcan cuando el PJ las toque
+function collectStar(player, star){
+        star.disableBody(true, true)
 }
